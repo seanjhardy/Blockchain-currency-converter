@@ -15,10 +15,13 @@ export const CurrencyList = () => {
   }, [])
 
   return (
-    <div className={"container"} style={{height: "100%"}}>
+    /**
+     * Make this height dynamic instead of fixed, couldn't get it to fit in the bounds
+     */
+    <div className={"container"} style={{height: 400}}>
       <div className={"list"}>
         {Object.entries(currencyData).map(([currency, values]) => {
-          return <CurrencyItem currency={values}/>
+          return <CurrencyItem currency={currency} data={values}/>
         })}
       </div>
     </div>

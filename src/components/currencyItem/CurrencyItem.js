@@ -1,12 +1,18 @@
-export const CurrencyItem = ({currency}) => {
+export const CurrencyItem = ({currency, data}) => {
   return (
-    <div className={"item"} key={currency.symbol}>
+    <div className={"item"} key={currency}>
       <span className={"text"}>
-      {currency.symbol}
+      {currency}
+      </span>
+      <div style={{flex: 1}}>
+
+      <span className={"text"}>
+      {data.symbol}
       </span>
       <span className={"text"}>
-        {currency.last}
+        {data.last}
       </span>
+      </div>
     </div>
   )
 }
