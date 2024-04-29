@@ -9,8 +9,14 @@ function App() {
 
   return (
     <div className="App">
+      {/*TODO: Add dynamic container height instead of fixed height (add media query for phone accesibility)*/}
+      {/*TODO: Add background graphic to improve UI design*/}
       <div className={"container"} style={{width: "50%", height: 500}}>
         <div className={"header"}>
+          {/*
+          TODO: Create header class to abstract away tab state management.
+                Increase button text size to improve accessibility
+          */}
           <div onClick={() => setTab("currencies")}
           className={`button ${tab === "currencies" ? "button-active" : ""}`}>
             <span className={"text"}>Currencies</span>
