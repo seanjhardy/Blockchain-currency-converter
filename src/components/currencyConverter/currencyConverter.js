@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import "./currencyConverter.css"
 import {convertCurrency} from "../../services/api";
+import convert from '../../assets/convert.png';
 
 export const CurrencyConverter = ({}) => {
   const [amount, setAmount] = useState(0)
@@ -19,7 +20,7 @@ export const CurrencyConverter = ({}) => {
     <div className={"container"}>
       <div className={"currencyConverter"}>
         <div style={{display: "flex", flexDirection: "row",
-          gap: 20,
+          gap: 10,
           justifyContent: "flex-start", alignItems: "center"}}>
           <input
             className={"input"}
@@ -34,8 +35,10 @@ export const CurrencyConverter = ({}) => {
             </span>
           </div>
         </div>
-        <span>=</span>
-        <div style={{display: "flex", flexDirection: "row"}}>
+        <img src={convert} style={{width: 30, height: 30, objectFit: "contain"}}/>
+        <div style={{display: "flex", flexDirection: "row",
+          gap: 10,
+          justifyContent: "flex-start", alignItems: "center"}}>
           <input
             className={"input"}
             type="text"
@@ -43,6 +46,11 @@ export const CurrencyConverter = ({}) => {
             onChange={() => {}}
             placeholder={"Converted amount"}
           />
+          <div>
+            <span className={"text"}>
+              {"BTC"}
+            </span>
+          </div>
         </div>
       </div>
     </div>
