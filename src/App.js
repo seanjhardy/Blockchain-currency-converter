@@ -1,23 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState} from "react";
 
 function App() {
+  const [tab, setTab] = useState("currencies")
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className={"container"}>
+        <div className={"header"}>
+          <div onClick={() => setTab("currencies")}
+          className={"button"}>
+            <span>Currencies</span>
+          </div>
+          <div onClick={() => setTab("converter")}
+               className={"button"}>
+            <span>Converter</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
