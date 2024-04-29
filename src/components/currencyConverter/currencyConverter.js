@@ -1,51 +1,51 @@
 import {useEffect, useState} from "react";
 import "./currencyConverter.css"
 import {convertCurrency} from "../../services/api";
-import convert from '../../assets/convert.png';
+import convertIcon from '../../assets/convert.png';
+import Dropdown from "../dropdown/dropdown";
 
-export const CurrencyConverter = ({}) => {
-  //TODO: Initially set the amount to null so that the placeholder text is visible
-  const [amount, setAmount] = useState(0)
+export const CurrencyConverter = ({currencyData}) => {
+  const [amount, setAmount] = useState(undefined)
   const [currency, setCurrency] = useState("USD")
-  const [convertedAmount, setConvertedAmount] = useState(0)
+  const [convertedAmount, setConvertedAmount] = useState(undefined)
 
-  {/*TODO: Rename method to "onAmountChange" for readability*/}
-  const handleChange = async (event) => {
+  const onAmountChange = async (event) => {
     const { value } = event.target;
     setAmount(value)
 
-    // TODO: Remove logging
-    console.log(value)
-    const result = await convertCurrency({amountA: value, currencyA: currency})
+    await convert(value, currency)
+  }
+
+  const onCurrencyChange = async (value) => {
+    setCurrency(value)
+
+    await convert(amount, value)
+  }
+
+  const convert = async (amount, currency) => {
+    const result = await convertCurrency({amountA: amount, currencyA: currency})
     setConvertedAmount(result)
   }
 
   return (
-    <div className={"container"}>
+    <div className={"container"} style={{flex: 1}}>
       <div className={"currencyConverter"}>
-        <div style={{display: "flex", flexDirection: "row",
-          gap: 10,
-          justifyContent: "flex-start", alignItems: "center"}}>
+        <div className={"currencyConverterInput"}>
           <input
             className={"input"}
             type="text"
             value={amount}
-            onChange={handleChange}
+            onChange={onAmountChange}
             placeholder={"Amount to convert"}
           />
-          {/*TODO: Give div the container style, create a dropdown menu to select the desired currency*/}
-          <div>
-            <span className={"text"}>
-              {currency}
-            </span>
+          <div className={"container"} style={{padding: 5, overflow: "visible"}}>
+            <Dropdown options={Object.entries(currencyData).map(([currency, data]) => currency)}
+                      onSelect={onCurrencyChange} />
           </div>
         </div>
-        {/*TODO: Add in alt attribute for accessibility*/}
-        <img src={convert} style={{width: 30, height: 30, objectFit: "contain"}}/>
+        <img src={convertIcon} style={{width: 30, height: 30, objectFit: "contain"}} alt={"Convert"}/>
         {/*TODO: Allow secondary currency type to be editable and perform the inverse conversion*/}
-        <div style={{display: "flex", flexDirection: "row",
-          gap: 10,
-          justifyContent: "flex-start", alignItems: "center"}}>
+        <div className={"currencyConverterInput"}>
           <input
             className={"input"}
             type="text"
