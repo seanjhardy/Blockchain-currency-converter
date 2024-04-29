@@ -15,7 +15,7 @@ export const CurrencyList = () => {
   }, [])
 
   return (
-    <div className={"container"}>
+    <div className={"container"} style={{height: "100%"}}>
       <div className={"list"}>
         {Object.entries(currencyData).map(([currency, values]) => {
           return <CurrencyItem currency={values}/>

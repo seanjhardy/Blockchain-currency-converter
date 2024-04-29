@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className={"container"} style={{width: "50%"}}>
+      <div className={"container"} style={{width: "50%", height: 500}}>
         <div className={"header"}>
           <div onClick={() => setTab("currencies")}
           className={`button ${tab === "currencies" ? "button-active" : ""}`}>
