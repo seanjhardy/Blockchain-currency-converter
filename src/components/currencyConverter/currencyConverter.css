@@ -1,9 +1,21 @@
 .currencyConverter {
     display: flex;
-    /*TODO: Change currency converter to row instead of column,
-       use a media query to resize the app on mobile*/
     flex-direction: column;
     gap: 10px;
     justify-content: center;
     align-items: center;
+}
+
+.currencyConverterInput {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center
+}
+
+@media only screen and (max-width: 800px) {
+    .currencyConverterInput {
+        flex-direction: column !important;
+    }
 }

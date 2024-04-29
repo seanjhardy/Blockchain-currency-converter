@@ -2,7 +2,7 @@
   --background: #171717;
   --background-dark: #131313;
   --primary: #16C37A;
-  --border: rgba(255,255,255,0.2);
+  --highlight: rgba(255,255,255,0.2);
 }
 
 .App {
@@ -14,17 +14,28 @@
   align-items: center;
 }
 
+.menu {
+  width: 50%;
+  max-width: 500px;
+  min-width: 300px;
+  height: 80%;
+  backdrop-filter: blur(30px);
+  padding: 30px !important;
+  gap: 20px !important;
+}
+
 .container {
   position: relative;
   padding: 15px;
   display: flex;
+  overflow: hidden;
   flex-direction: column;
-  border: solid 1px var(--border);
+  border: solid 1px var(--highlight);
   border-radius: 10px;
   background-color: rgba(255,255,255,0.02);
   justify-content: flex-start;
   gap: 10px;
-  box-shadow: 0 5px 2px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }
 
 /*TODO: Abstract common component stylesheets into their respective components*/
@@ -32,28 +43,51 @@
   padding: 5px;
   display: flex;
   flex-direction: row;
-  border: solid 1px var(--border);
+  border: solid 1px var(--highlight);
   border-radius: 10px;
   height: 50px;
   background-color: var(--background-dark);
-  box-shadow: 0 0 5px rgba(0,0,0,0.2) inset;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2) inset;
   color: white;
+  font-weight: 600;
 }
 
-/*TODO: Add cursor: pointer to improve UX*/
 .button {
-  background-color: var(--border);
-  border: solid 1px rgba(255,255,255,0.3);
+  background-color: var(--highlight);
+  border: solid 2px rgba(255,255,255,0.3);
   border-radius: 10px;
   padding: 10px;
-  flex: 1;
   transition: all 0.2s ease-in-out;
-  box-shadow: 0 5px 2px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/*TODO: Replace scale animation with background colour change/shimmer animation to improve UI design*/
-.button:hover{
-  transform: scale(1.05);
+.button:hover::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255,255,255,0.2);
+  transform: scale(1.1);
+  background: linear-gradient(150deg, var(--highlight) 40%, rgba(255,255,255,0.3) 50%, var(--highlight) 60%);
+  animation: backgroundAnimation 0.5s linear;
+  background-size: 500%;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    background-position: 0 0%;
+  }
+  100% {
+    background-position: -110% 0%;
+  }
 }
 
 .button-active {
@@ -66,8 +100,47 @@
   gap: 10px;
 }
 
-{/*TODO: Replace this with .span to avoid unnecessary class declarations*/}
-.text {
+span {
   color: white;
   font-weight: 600;
+}
+
+.tab-button {
+  font-size: 18px;
+}
+
+
+.background-image{
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+}
+
+.top-banner{
+  background-image: url("./assets/background-banner.png");
+  background-repeat: repeat-x;
+  background-size: 50%;
+  pointer-events: none;
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.bottom-banner {
+  background-image: url("./assets/background-banner.png");
+  background-repeat: repeat-x;
+  background-size: 50%;
+  pointer-events: none;
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: scaleY(-1)
 }

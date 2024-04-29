@@ -3,15 +3,16 @@
 export const CurrencyItem = ({currency, data}) => {
   return (
     <div className={"item"} key={currency}>
-      <span className={"text"}>
+      <span>
       {currency}
       </span>
-      <div style={{flex: 1}}>
-        <span className={"text"}>
+      <div style={{flex: 1, display: "flex", gap: 5,
+        justifyContent: "flex-end", alignItems: "flex-end"}}>
+        <span style={{fontSize: 12, color: "var(--primary)"}}>
         {data.symbol}
         </span>
-        <span className={"text"}>
-          {data.last}
+        <span>
+          {data.last.toLocaleString()}
         </span>
       </div>
     </div>

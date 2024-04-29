@@ -2,28 +2,41 @@ import {useEffect, useState} from "react";
 import "./currencyList.css"
 import {getCurrencies} from "../../services/api";
 import {CurrencyItem} from "../currencyItem/CurrencyItem";
+import searchIcon from "../../assets/search.png"
 
-export const CurrencyList = () => {
-  const [currencyData, setCurrencyData] = useState({})
+export const CurrencyList = ({currencyData}) => {
+  const [searchValue, setSearchValue] = useState(undefined)
 
-  useEffect(() => {
-    //TODO: Move this function outside of useEffect for readability
-    const fetchData = async () => {
-      const currencyData = await getCurrencies()
-      setCurrencyData(currencyData)
-    }
-    fetchData()
-  }, [])
+  const search = (event) => {
+    const { value } = event.target;
+    setSearchValue(value)
+  }
 
   return (
-    /**
-     * TODO: Make this height dynamic instead of fixed, (couldn't get it to fit in the bounds).
-     * Removed horizontal scrollbar and improve existing scrollbar UI using dark theme
-     */
-    <div className={"container"} style={{height: 400}}>
-      {/*TODO: Add a search bar here to filter the resulting currencies*/}
+    <div className={"container"} style={{flex: 1}}>
+      <div style={{flexDirection: "row", display: "flex", gap: 10,
+        justifyContent: "center", alignItems: "center"}}>
+        <input
+          className={"input"}
+          style={{flex: 1, height: 30}}
+          value={searchValue}
+          onChange={search}
+          placeholder={"Search..."}/>
+        {/*
+          Seach button with icon
+        */}
+        <div className={"button"} style={{width: 30, minWidth: 30, height: 30, padding: 0}}>
+          <img src={searchIcon} style={{width: 15, height: 15, objectFit: "contain"}} alt={"Search"}/>
+        </div>
+      </div>
       <div className={"list"}>
-        {Object.entries(currencyData).map(([currency, values]) => {
+        {Object.entries(currencyData)
+          .filter(([currency, values]) => {
+            // Include all currencies containing the searchValue substring
+            // If searchValue is undefined, return true
+            return currency.includes(searchValue) || !searchValue
+          })
+          .map(([currency, values]) => {
           return <CurrencyItem currency={currency} data={values}/>
         })}
       </div>
