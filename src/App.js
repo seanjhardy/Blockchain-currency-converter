@@ -12,14 +12,17 @@ function App() {
       <div className={"container"} style={{width: "50%"}}>
         <div className={"header"}>
           <div onClick={() => setTab("currencies")}
-          className={"button"}>
-            <span>Currencies</span>
+          className={`button ${tab === "currencies" ? "button-active" : ""}`}>
+            <span className={"text"}>Currencies</span>
           </div>
           <div onClick={() => setTab("converter")}
-               className={"button"}>
-            <span>Converter</span>
+               className={`button ${tab === "converter" ? "button-active" : ""}`}>
+            <span className={"text"}>Converter</span>
           </div>
         </div>
+        {/*
+          Tabs for navigating between menus
+        */}
         {tab === "currencies" && (
           <CurrencyList/>
         )}
