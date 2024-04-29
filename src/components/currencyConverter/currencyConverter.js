@@ -18,26 +18,32 @@ export const CurrencyConverter = ({}) => {
   return (
     <div className={"container"}>
       <div className={"currencyConverter"}>
-        <input
-          className={"input"}
-          type="text"
-          value={amount}
-          onChange={handleChange}
-          placeholder={"Amount to convert"}
-        />
-        <div>
-          {/*
-            Currency selector
-          */}
+        <div style={{display: "flex", flexDirection: "row",
+          gap: 20,
+          justifyContent: "flex-start", alignItems: "center"}}>
+          <input
+            className={"input"}
+            type="text"
+            value={amount}
+            onChange={handleChange}
+            placeholder={"Amount to convert"}
+          />
+          <div>
+            <span className={"text"}>
+              {currency}
+            </span>
+          </div>
         </div>
         <span>=</span>
-        <input
-          className={"input"}
-          type="text"
-          value={convertedAmount}
-          onChange={() => {}}
-          placeholder={"Converted amount"}
-        />
+        <div style={{display: "flex", flexDirection: "row"}}>
+          <input
+            className={"input"}
+            type="text"
+            value={convertedAmount}
+            onChange={() => {}}
+            placeholder={"Converted amount"}
+          />
+        </div>
       </div>
     </div>
   )
