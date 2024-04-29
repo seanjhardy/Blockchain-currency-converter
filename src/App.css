@@ -27,6 +27,7 @@
   box-shadow: 0 5px 2px rgba(0,0,0,0.2);
 }
 
+/*TODO: Abstract common component stylesheets into their respective components*/
 .input {
   padding: 5px;
   display: flex;
@@ -39,6 +40,7 @@
   color: white;
 }
 
+/*TODO: Add cursor: pointer to improve UX*/
 .button {
   background-color: var(--border);
   border: solid 1px rgba(255,255,255,0.3);
@@ -49,6 +51,7 @@
   box-shadow: 0 5px 2px rgba(0,0,0,0.2);
 }
 
+/*TODO: Replace scale animation with background colour change/shimmer animation to improve UI design*/
 .button:hover{
   transform: scale(1.05);
 }
@@ -63,6 +66,7 @@
   gap: 10px;
 }
 
+{/*TODO: Replace this with .span to avoid unnecessary class declarations*/}
 .text {
   color: white;
   font-weight: 600;

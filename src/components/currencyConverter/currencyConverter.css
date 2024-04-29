@@ -1,5 +1,7 @@
 .currencyConverter {
     display: flex;
+    /*TODO: Change currency converter to row instead of column,
+       use a media query to resize the app on mobile*/
     flex-direction: column;
     gap: 10px;
     justify-content: center;
