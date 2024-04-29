@@ -1,12 +1,18 @@
 import {useEffect, useState} from "react";
 import "./currencyConverter.css"
+import {convertCurrency} from "../../services/api";
 
 export const CurrencyConverter = ({}) => {
   const [amount, setAmount] = useState(0)
   const [currency, setCurrency] = useState("USD")
+  const [convertedAmount, setConvertedAmount] = useState(0)
 
-  const handleChange = ({value}) => {
+  const handleChange = async (event) => {
+    const { value } = event.target;
     setAmount(value)
+    console.log(value)
+    const result = await convertCurrency({amountA: value, currencyA: currency})
+    setConvertedAmount(result)
   }
 
   return (
@@ -25,9 +31,13 @@ export const CurrencyConverter = ({}) => {
           */}
         </div>
         <span>=</span>
-        <div className={"input"}>
-
-        </div>
+        <input
+          className={"input"}
+          type="text"
+          value={convertedAmount}
+          onChange={() => {}}
+          placeholder={"Converted amount"}
+        />
       </div>
     </div>
   )

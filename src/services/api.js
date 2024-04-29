@@ -8,9 +8,12 @@ export const getCurrencies = () => {
     });
 }
 
-export const convertCurrency = ({amountA, typeA, typeB="btc"}) => {
-  return fetch(`https://blockchain.info/tobtc?currency=${typeA}&value=${amountA}`)
-    .then(response => response.json())
+export const convertCurrency = ({amountA, currencyA, currencyB="btc"}) => {
+  return fetch(`https://blockchain.info/tobtc?currency=${currencyA}&value=${amountA}`)
+    .then(response => {
+      console.log(response)
+      return response.json()
+    })
     .then((data) => {
       return data
     }).catch(error => {
